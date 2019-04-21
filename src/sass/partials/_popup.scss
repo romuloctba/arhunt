@@ -1,0 +1,60 @@
+$border-radius: 3px;
+$popup-background: rgba(255, 255, 255, 0.9);
+$close-btn-border: rgba(0, 0, 0, 1);
+
+#popup {
+  background: $popup-background;
+  border-radius: $border-radius;
+  display: none;
+  left: 50%;
+  padding-bottom: 2em;
+  padding-top: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  position: fixed;
+  transform: translateX(-50%);
+  top: 1em;
+  width: 90%;
+  z-index: 101;
+  &.active {
+    display: block;
+  }
+  .popup-title {
+    font-weight: bold;
+    text-align: center;
+  }
+  .popup-content {
+    white-space: pre-line;
+  }
+  .foundCluesList {
+    display: block;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    li {
+      border-bottom: 3px solid #222;
+      display: inline-block;
+      font-size: 24px;
+      margin-right: 0.5em;
+      padding: 0.5em 0.25em;
+    }
+  }
+  .clueBox {
+    background: rgba(0,0,0,0.2);
+    display: inline-block;
+    padding: 0.5em 1em;
+    width: auto; 
+  }
+  .close {
+    border: 1px solid $close-btn-border;
+    color: #000;
+    display: block;
+    margin-top: 1em;
+    max-width: 50%;
+    padding: 0.5em 1em;
+    position: relative;
+    text-decoration: none;
+  }
+}
