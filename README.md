@@ -42,7 +42,7 @@ This loads the browser at http://localhost:8080
 ## The Markers
 - This uses 3x3 2d Barcode marker
 - This uses marker #1 to #10
-
+- PNG files that you can print are available at [./_markers](./tree/master/_markers) folder
 
 ---
 
