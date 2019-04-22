@@ -55,14 +55,12 @@ You can there find the author, and the original image source URL.
 Most of images are available in .eps or .ai vector originaly.
 They were all downloaded from Freepik.com
 
-> Disclaimer
+## Disclaimer
 > This is a personal project, coded by me (Rômulo Zoch) to have fun at easter celebration at my work.
 The Company or clients I work for had no part or supervision in coding this project, and any opinions here present do not reflect any opinions but the author's.
 
 > The original version (that we played) had famous character images, and it was changed to avoid copyright issues, since I own no rights for any of the clues presented here.
 
-----
-
-# MIT LICENSE DISCLAIMER
+## MIT LICENSE DISCLAIMER
 The MIT License applies to the project, except for the clue images, which can have their own LICENSE. Please reffer to their SOURCE_URL available at CLUE_IMAGES_CREDITS.md file if you want to use them in your project. 
 (They were all free when I used them, and I believe still are. But the owners may have specific demands to fair use them, so please be aware of that.)
