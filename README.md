@@ -57,7 +57,7 @@ They were all downloaded from Freepik.com
 
 > Disclaimer
 > This is a personal project, coded by me (Rômulo Zoch) to have fun at easter celebration at my work.
-The Company or clients I work for had no part or supervision in coding this project, and any opinions hereby present do not reflect any opinions but the author`s.
+The Company or clients I work for had no part or supervision in coding this project, and any opinions here present do not reflect any opinions but the author's.
 
 > The original version (that we played) had famous character images, and it was changed to avoid copyright issues, since I own no rights for any of the clues presented here.
 
