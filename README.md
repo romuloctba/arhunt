@@ -39,6 +39,11 @@ This loads the browser at http://localhost:8080
 - Another **important** parameter is `const baseUrlProd = "/arhunt/"`. Replace /arhunt/ with the repo or public folder name
 
 
+## The Markers
+- This uses 3x3 2d Barcode marker
+- This uses marker #1 to #10
+
+
 ---
 
 ## Clue image Credits
