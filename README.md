@@ -43,6 +43,9 @@ This loads the browser at http://localhost:8080
 - This uses 3x3 2d Barcode marker
 - This uses marker #1 to #10
 - PNG files that you can print are available at [./_markers](./_markers) folder
+- There is [this Marker Generator](http://au.gmented.com/app/marker/marker.php) on the Webs
+
+**Important** specially on iOS, the marker borders must be clear (about 1cm clear), or the camera will have trouble reading it.
 
 ---
 
