@@ -18,6 +18,7 @@ GAME_API = {
   waitingMarkers: {
 
   },
+  i18n: {},
   showPopup: (msg = "", title = "", extraContent = "") => {
     GAME_API.closePopup();
     $('#popup .popup-title').text(title);
@@ -27,6 +28,15 @@ GAME_API = {
   },
   closePopup: () => {
     $('#popup').removeClass('active');
+  },
+  setLang: function() {
+    const lang = $(this).data('lang');
+    i18n.use(lang);
+
+    $('.language-selector').removeClass('active');
+    $(this).addClass('active');
+    $('#resetGame').text(i18n.get('RESET_GAME_BUTTON'));
+    $('#viewProgress').text(i18n.get('VIEW_PROGRESS_BUTTON'));
   },
   getConfig: () => {
     const savedData = window.localStorage.getItem(STORAGE_KEY);
@@ -40,12 +50,13 @@ GAME_API = {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(newConfig));
   },
   resetGame: () => {
-    const confirmation = window.confirm("Tem certeza que deseja recomeçar? (Todo progresso será perdido!)");
+    const message = i18n.get("CONFIRM_MESSAGE");
+    const confirmation = window.confirm(message);
     if (!confirmation) {
       return;
     }
     window.localStorage.clear(STORAGE_KEY);
-    GAME_API.loadGame();
+    GAME_API.loadGame(GAME_API.i18n);
   },
   newGame: (config) => {
     config.currentLevelIndex = 0;
@@ -57,7 +68,8 @@ GAME_API = {
     config.foundMarkers = [];
     GAME_API.saveConfig(config);
   },
-  loadGame: () => {
+  loadGame: (i18n) => {
+    GAME_API.i18n = i18n;
     const config = GAME_API.getConfig();
     if (config.activePath && (config.currentLevelIndex || config.currentLevelIndex === 0)) {
     } else {
@@ -67,12 +79,9 @@ GAME_API = {
     }
   },
   showHelp: () => {
-    const introText = { text: "Seja bem vindo(a)! \n Vamos começar a caçada. \n Use a câmera do Celular para capturar PISTAS, apontando-a para MARCADORES, espalhadas pelo ODC. \n\n - Cada pista trará uma peça do enigma \n "};
-    introText.text = introText.text + " \n - Nem todos os marcadores contém pistas para a sua missão. (Leia a mensagem ao capturar um marcador)";
-    introText.text = introText.text + " \n - Quando TODAS pistas forem coletadas, você recebrá um aviso.";
-    introText.text = introText.text + " \n - Clique em 'Ver Progresso' para conferir as pistas que já capturou, e quantas faltam.";
-    introText.text = introText.text + " \n - Ao coletar todas as pistas da sua missão, decifre a ordem correta e vá à um ponto de retirada de prêmios.";
-    GAME_API.showPopup(introText.text, "Instruções");
+    const helpText = i18n.get('SHOW_HELP_TEXT');
+    const helpTitle = i18n.get('SHOW_HELP_TITLE');
+    GAME_API.showPopup(helpText, helpTitle);
   },
   generateProgressHtml: () => {
     const config = GAME_API.getConfig();
@@ -81,16 +90,16 @@ GAME_API = {
     const foundMarkers = config.foundMarkers.length;
     const foundClues = config.foundClues.length;
     const foundCluesList = config.foundClues.length >= 1 ? "<li>" + config.foundClues.join('</li><li>') + "</li>" : "";
-    const instructions = foundClues === totalClues ? "Descobriu a palavra? <br> Descubra, e vá a um ponto de retirada de prêmio!" : "";
+    const instructions = foundClues === totalClues ? i18n.get('FINAL_INSTRUCTIONS_TIP') : "";
 
     const html = `
-    <h4 class="progress-title">Marcadores verificados</h4>
+    <h4 class="progress-title">${i18n.get('PROGRESS_MARKER_TITLE')}</h4>
     <p>
-     Lidos <strong>${foundMarkers} / ${totalMarkers}</strong> marcadores disponíveis.
+     ${i18n.get('PROGRESS_MARKER_TEXT', {foundMarkers, totalMarkers})}
     </p>
-     <h4 class="progress-title">Pistas encontradas</h4>
+     <h4 class="progress-title">${i18n.get('PROGRESS_CLUES_TITLE')}</h4>
      <p>
-     Encontradas <strong>${foundClues} / ${totalClues}</strong> pistas. <br>
+     ${i18n.get('PROGRESS_CLUES_TEXT', { foundClues, totalClues })}
      </p>
      <ul class="foundCluesList">
       ${foundCluesList}
@@ -100,7 +109,7 @@ GAME_API = {
     return html;
   },
   viewProgress: () => {
-    const title = "Progresso da caçada:";
+    const title = i18n.get('VIEW_PROGRESS_TITLE');
     const text = "";
     const extraContent = GAME_API.generateProgressHtml();
     GAME_API.showPopup(text, title, extraContent);
@@ -121,7 +130,7 @@ GAME_API = {
     
     if (!GAME_API.isValidMarker(markerId, activePath)) {
       GAME_API.saveConfig(config);
-      GAME_API.showPopup('Essa pista é inválida para a sua missão. \n Por favor, procure outra pista!', 'Ops..');
+      GAME_API.showPopup(i18n.get('INVALID_CLUE_TEXT'), i18n.get('INVALID_CLUE_TITLE'));
       return;
     }
 
@@ -142,25 +151,25 @@ GAME_API = {
     GAME_API.showClueProgress(totalFound, totalToFind, clue);
   },
   showClueProgress: (totalFound, totalToFind, clue) => {
-    const text = "Parabéns, você encontrou uma pista! \n \n Você pode conferir o Progresso Total no botão 'Ver Progresso'.";
+    const text = i18n.get('SHOW_CLUE_PROGRESS_TEXT');
     const extraContent = `
-      <p>Pista ${totalFound} de ${totalToFind} encontrada:</p>
+      ${i18n.get('SHOW_CLUE_PROGRESS_TEXT_INFO', { totalFound, totalToFind })}
       <div class="showClue">
-        <p>Letra: <span class="clueBox">${clue}</span></p>
+        <p>${i18n.get('LETTER')} <span class="clueBox">${clue}</span></p>
       </div>
     `;
-    GAME_API.showPopup(text, "Pista encontrada!", extraContent);
+    GAME_API.showPopup(text, i18n.get('SHOW_CLUE_PROGRESS_TITLE'), extraContent);
   },
   showFoundAllClues: clue => {
-    const finalText = "Parabéns, você coletou todas as pistas!";
+    const finalText = i18n.get('SHOW_FOUND_ALL_CLUES_TEXT');
     const finalExtraContent = `
-      <h4>A última pista é:</h4>
+      <h4>${i18n.get('SHOW_FOUND_ALL_CLUES_TEXT_TITLE')}</h4>
       <div class="showClue">
         <h2>${clue}</h2>
       </div>
-      <p>Entre em 'Ver Progresso' para ver todas as dicas registradas!</p>
+      <p>${i18n.get('SHOW_FOUND_ALL_CLUES_TEXT_INFO')}</p>
     `;
-    GAME_API.showPopup(finalText, "Dicas Completas!", finalExtraContent);
+    GAME_API.showPopup(finalText, i18n.get('SHOW_FOUND_ALL_CLUES_TITLE'), finalExtraContent);
   },
   processMarker: markerId => {
     const config = GAME_API.getConfig();
@@ -170,8 +179,9 @@ GAME_API = {
       GAME_API.captureMarker(markerId);
     } else {
       if (GAME_API.isWaitingOver(markerId)) {
-        const markerStatus = GAME_API.isValidMarker(markerId) ? 'Válida' : 'Inválida';
-        GAME_API.showPopup("Você já leu este marcador... \n\n (Era uma pista "+ markerStatus +")", "Marcador Repetido");
+        const markerStatus = GAME_API.isValidMarker(markerId) ? i18n.get('VALID') : i18n.get('INVALID');
+        const repeatedMarkerText = i18n.get('REPEATED_MARKER_TEXT', { markerStatus });
+        GAME_API.showPopup(repeatedMarkerText, i18n.get('REPEATED_MARKER_TITLE'));
       }
     }
   },

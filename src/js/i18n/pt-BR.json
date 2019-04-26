@@ -1,0 +1,28 @@
+{
+  "VIEW_PROGRESS_BUTTON": "Ver Progresso",
+  "RESET_GAME_BUTTON": "Reiniciar",
+  "CONFIRM_MESSAGE": "Tem certeza que deseja recomeçar? (Todo progresso será perdido!)",
+  "SHOW_HELP_TEXT": "Seja bem vindo(a)! \n Vamos começar a caçada. \n Use a câmera do Celular para capturar PISTAS, apontando-a para MARCADORES, espalhadas pelo ODC. \n\n - Cada pista trará uma peça do enigma \n  \n - Nem todos os marcadores contém pistas para a sua missão. (Leia a mensagem ao capturar um marcador) \n - Quando TODAS pistas forem coletadas, você recebrá um aviso. \n - Clique em 'Ver Progresso' para conferir as pistas que já capturou, e quantas faltam. \n - Ao coletar todas as pistas da sua missão, decifre a ordem correta e vá à um ponto de retirada de prêmios.",
+  "SHOW_HELP_TITLE": "Instruções",
+  "FINAL_INSTRUCTIONS_TIP": "Descobriu a palavra? <br> Descubra, e vá a um ponto de retirada de prêmio!",
+  "PROGRESS_MARKER_TITLE": "Marcadores verificados",
+  "PROGRESS_MARKER_TEXT": "Lidos <strong>{foundMarkers} / {totalMarkers}</strong> marcadores disponíveis.",
+  "PROGRESS_CLUES_TITLE": "Pistas encontradas",
+  "PROGRESS_CLUES_TEXT": "Encontradas <strong>{foundClues} / {totalClues}</strong> pistas. <br>",
+  "VIEW_PROGRESS_TITLE": "Progresso da caçada:",
+  "INVALID_CLUE_TITLE": "Ops...",
+  "INVALID_CLUE_TEXT": "Essa pista é inválida para a sua missão. \n Por favor, procure outra pista!",
+  "SHOW_CLUE_PROGRESS_TITLE": "Pista encontrada!",
+  "SHOW_CLUE_PROGRESS_TEXT": "Parabéns, você encontrou uma pista! \n \n Você pode conferir o Progresso Total no botão 'Ver Progresso'.",
+  "SHOW_CLUE_PROGRESS_TEXT_INFO": "<p>Pista {totalFound} de {totalToFind} encontrada:</p>",
+  "LETTER": "Letra: ",
+  "SHOW_FOUND_ALL_CLUES_TITLE": "Dicas Completas!",
+  "SHOW_FOUND_ALL_CLUES_TEXT": "Parabéns, você coletou todas as pistas!",
+  "SHOW_FOUND_ALL_CLUES_TEXT_TITLE": "A última pista é: ",
+  "SHOW_FOUND_ALL_CLUES_TEXT_INFO": "Entre em 'Ver Progresso' para ver todas as dicas registradas!",
+  "REPEATED_MARKER_TEXT": "Você já leu este marcador... \n\n (Era uma pista {markerStatus} )",
+  "REPEATED_MARKER_TITLE": "Marcador Repetido",
+  "VALID": "Válida",
+  "INVALID": "Inválida"
+
+}
