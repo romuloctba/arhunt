@@ -55,3 +55,22 @@ $menu-color: rgba(0,0,55,1);
   text-align: center;
   width: 100%;
 }
+
+#language {
+ position: fixed;
+ top: 1em;
+ right: 1em;
+ display: block;
+ .language-selector {
+   display: inline-block;
+   opacity: 0.5;
+   cursor: pointer;
+   border: 1px solid #222;
+   padding: 0;
+   line-height: 0;
+   margin-right: 0.5em;
+   &.active, &:hover {
+     opacity: 1;
+   }
+ } 
+}
